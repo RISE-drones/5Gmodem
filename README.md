@@ -1,10 +1,10 @@
 # 5Gmodem
 Short description for establishing 5G-connection with Quectel 5G modem.\
-Many thanks and credits to M.M. from Ericsson who got me on track. I'd be glad to print your full name here.
+Many thanks and credits to M.M. from Ericsson who got me on track.
 
 Here are notes from a work in progress. It is not a complete instruction or turn key solution, but it hopefully helps people to get along with 5G connections on different clients.
 
-We have used a Quectel 5G modem and a carrier board XVIST 5G LTE Industrial m.2(NGFF) to USB3.0 Adapter that we got recommended by M.M. We bought it on amazon.\
+We have used a Quectel 5G modem and a carrier board XVIST 5G LTE Industrial m.2(NGFF) to USB3.0 Adapter that we got recommended. We bought it on amazon.\
 We connect it to a raspberry Pi and powers it from a separate source (common ground). The Pi cannot supply the modem when it gets loaded.
 
 # Contribute

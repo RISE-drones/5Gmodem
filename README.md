@@ -52,11 +52,11 @@ sudo udhcpc -q -n -f -i wwan0     (note: No watchdog, if it goes down it goes do
 What it does is that it puts down wwan1 so that we can write Y in the config file raw_ip, we then bring up the interface and start a connection and finally routes it.
 
 Quriosity commands, connection status etc:
-sudo qmicli –d /dev/cdc-wdm1 --nas-get-serving-system
-sudo qmicli –d /dev/cdc-wdm1 --nas-get-cell-location-info
-sudo qmicli –d /dev/cdc-wdm1 --nas-get-signal-info
-sudo qmicli –d /dev/cdc-wdm1 --wds-get-profile-list=3gpp
-sudo qmicli --nas-network-scan
+sudo qmicli –d /dev/cdc-wdm1 --nas-get-serving-system\
+sudo qmicli –d /dev/cdc-wdm1 --nas-get-cell-location-info\
+sudo qmicli –d /dev/cdc-wdm1 --nas-get-signal-info\
+sudo qmicli –d /dev/cdc-wdm1 --wds-get-profile-list=3gpp\
+sudo qmicli --nas-network-scan\
 
 # Autostart and maintain connection with usb modem
 Create a script mobile_connect_usb.sh that connects and monitors the connection (available in repo)

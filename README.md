@@ -1,8 +1,8 @@
 # 5Gmodem
 Short description for establishing 5G-connection with Quectel 5G modem.
-Many thanks and credits to M.M. from Ericsson who got me on track.
+Many thanks and credits to M.M. from Ericsson who got me on track. I'd be glad to print your full name here.
 
-Here are notes from a work in progress. It is not a complete instruction or turn key solution, but it hopefully helps people to get along with 5G connections on differetn clients.
+Here are notes from a work in progress. It is not a complete instruction or turn key solution, but it hopefully helps people to get along with 5G connections on different clients.
 
 We have used a Quectel 5G modem and a carrier board XVIST 5G LTE Industrial m.2(NGFF) to USB3.0 Adapter that we got recommended by M.M. We bought it on amazon.
 We connect it to a raspberry Pi and powers it from a separate source (common ground). The Pi cannot supply the modem when it gets loaded.
@@ -11,12 +11,13 @@ We connect it to a raspberry Pi and powers it from a separate source (common gro
 Spread the word, and please suggest improvments or create pull requests!
 
 # Prerequisits
+Install libqmi-utils and udhcpc
 sudo apt install libqmi-utils
 sudo apt install udhcpc
 
 Look for modem:
 usb-devices
-Should list the actual modem, Quectel RM500-GL in our case
+It should list the actual modem, Quectel RM500-GL in our case
 
 ifconfig should list a wwanX interface. Check with lsusb and dmesg what interface the modem is connected to: You need to dig a bit if two modems are installed.
 
@@ -25,7 +26,7 @@ sudo dmesg  | grep wwan
 From here on, it is assumed the modem is connected to /dev/cdc-wdm1 and wwan1. Adjust as nessesary for your setup.
 
 # Playing around with the modem
-We use qmicli to communicate the modem. Here are some commands that can be played around with to familiarise with the modem. Se these as notes of work in progress..
+We use qmicli to communicate the modem. Here are some commands that can be played around with to familiarise with the modem. See these as notes of work in progress..
 
 ## Look for sim
 Is sim there? (can take some time, be patient)
@@ -36,8 +37,6 @@ APN must be set correctly and often leads to problems. APN setting is valid afte
 Set the APN for next power cycle:
 sudo qmicli –d /dev/cdc-wdm1 --wds-modify-profile=3gpp,1,apn=internet
 sudo  qmicli -d /dev/cdc-wdm1 -p --wds-get-profile-list=3gpp
-
-
 
 sudo qmicli –d &/dev/cdc-wdm1 --wds-start-network=apn=internet –cli-no-release-cid
 sudo udhcpc -q –n –f -I wwan1

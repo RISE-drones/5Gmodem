@@ -50,8 +50,7 @@ sudo qmcli -d /dev/cdc-wdm1 --wds-start-network=apn=internet --client-no-release
 sudo udhcpc -q -n -f -i wwan0     (note: No watchdog, if it goes down it goes down.)
 
 What it does is that it puts down wwan1 so that we can write Y in the config file raw_ip, we then bring up the interface and start a connection and finally routes it.
-
-Quriosity commands, connection status etc:\
+## Quriosity commands, connection status etc:\
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-serving-system\
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-cell-location-info\
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-signal-info\

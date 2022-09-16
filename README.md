@@ -32,31 +32,31 @@ We use qmicli to communicate the modem. Here are some commands that can be playe
 Is sim there? (can take some time, be patient)
 sudo qmicli –d /dev/cdc-wdm0 –uim-get-slot-status
 ## APN
-A bit mysterious. Apparently providers are sick of support issues regarding apn. Most providers approve 'internet' as apn..
-APN must be set correctly and often leads to problems. APN setting is valid after power cycle. Apn settings can change with sims, and possibly more events. If something does not work, start at the apn.
-Set the APN for next power cycle:
-sudo qmicli –d /dev/cdc-wdm1 --wds-modify-profile=3gpp,1,apn=internet
-sudo  qmicli -d /dev/cdc-wdm1 -p --wds-get-profile-list=3gpp
+A bit mysterious. Apparently providers are sick of support issues regarding apn. Most providers approve 'internet' as apn..\
+APN must be set correctly and often leads to problems. APN setting is valid after power cycle. Apn settings can change with sims, and possibly more events. If something does not work, start at the apn.\
+Set the APN for next power cycle:\
+sudo qmicli –d /dev/cdc-wdm1 --wds-modify-profile=3gpp,1,apn=internet\
+sudo  qmicli -d /dev/cdc-wdm1 -p --wds-get-profile-list=3gpp\
 
-sudo qmicli –d &/dev/cdc-wdm1 --wds-start-network=apn=internet –cli-no-release-cid
-sudo udhcpc -q –n –f -I wwan1
-sudo qmicli –d &/dev/cdc-wdm1 --wds-get-current-settings
+sudo qmicli –d &/dev/cdc-wdm1 --wds-start-network=apn=internet –cli-no-release-cid\
+sudo udhcpc -q –n –f -I wwan1\
+sudo qmicli –d &/dev/cdc-wdm1 --wds-get-current-settings\
 
-The magic 5 lines (After setting up correctly we are good to go..)
-sudo ifconfig wwan1 down
-sudo qmicli -d /dev/cdc-wdm1 –set-expected-data-format=raw_ip (echo Y | sudo tee /sys/class/net/wwan1/qmi/raw_ip)
-sudo ifconfig wwan1 up
-sudo qmcli -d /dev/cdc-wdm1 --wds-start-network=apn=internet --client-no-release-cid
-sudo udhcpc -q -n -f -i wwan0     (note: No watchdog, if it goes down it goes down.)
+The magic 5 lines (After setting up correctly we are good to go..)\
+sudo ifconfig wwan1 down\
+sudo qmicli -d /dev/cdc-wdm1 –set-expected-data-format=raw_ip (echo Y | sudo tee /sys/class/net/wwan1/qmi/raw_ip)\
+sudo ifconfig wwan1 up\
+sudo qmcli -d /dev/cdc-wdm1 --wds-start-network=apn=internet --client-no-release-cid\
+sudo udhcpc -q -n -f -i wwan0     (note: No watchdog, if it goes down it goes down.)\
 
-What it does is that it puts down wwan1 so that we can write Y in the config file raw_ip, we then bring up the interface and start a connection and finally routes it.
+What it does is that it puts down wwan1 so that we can write Y in the config file raw_ip, we then bring up the interface and start a connection and finally routes it.\
 
-Quriosity commands, connection status etc:
+Quriosity commands, connection status etc:\
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-serving-system\
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-cell-location-info\
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-signal-info\
 sudo qmicli –d /dev/cdc-wdm1 --wds-get-profile-list=3gpp\
-sudo qmicli --nas-network-scan\
+sudo qmicli --nas-network-scan
 
 # Autostart and maintain connection with usb modem
 Create a script mobile_connect_usb.sh that connects and monitors the connection (available in repo)

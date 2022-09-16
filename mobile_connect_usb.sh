@@ -5,7 +5,7 @@ device=/dev/cdc-wdm1
 iface=wwan1
 apn='5gsa02'
 
-# set apn, requires boot to take effect!
+# Set apn, requires boot to take effect!
 sudo qmicli -d /dev/cdc-wdm1 --wds-modify-profile=3gpp,1,apn=$apn
 
 echo "$device"

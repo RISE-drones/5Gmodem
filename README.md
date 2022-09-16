@@ -69,7 +69,7 @@ chmod 755 mobile_connect_usb.sh
 Create a service that runs the scripts and restarts as soon as the scripts exits (available in repo)\
 cd /etc/systemd/system/\
 nano mobile_connect_usb.service\
-Update local path as nessesary
+Update your local path as nessesary
 
 Test the service:\
 sudo systemctl start mobile_connect_usb.service

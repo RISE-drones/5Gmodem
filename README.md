@@ -53,9 +53,13 @@ What it does is that it puts down wwan1 so that we can write Y in the config fil
 
 Quriosity commands, connection status etc:
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-serving-system
+
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-cell-location-info
+
 sudo qmicli –d /dev/cdc-wdm1 --nas-get-signal-info
+
 sudo qmicli –d /dev/cdc-wdm1 --wds-get-profile-list=3gpp
+
 sudo qmicli --nas-network-scan
 
 # Autostart and maintain connection with usb modem

@@ -12,6 +12,7 @@ echo "$device"
 echo "Script setting for APN: $apn"
 echo "Make sure reported APN is same as script setting"
 qmicli -d /dev/cdc-wdm1 -p --wds-get-profile-list=3gpp
+# Wait for the modem to report online
 while [ "$status" != "online" ]
 do
 	sleep 2
@@ -34,8 +35,6 @@ qmicli -d $device --set-expected-data-format='raw-ip'
 ifconfig $iface up
 # Connect
 qmicli -p -d $device --device-open-net='net-raw-ip|net-no-qos-header' --wds-start-network="apn=$apn,ip-type=4" --client-no-release-cid
-# 1 Sec sleep for better robustness to 5g static ip
-#sleep 1
 # Start udhcpc for the interface, script fails if no lease (per design)
 udhcpc -n -q -f -i $iface
 

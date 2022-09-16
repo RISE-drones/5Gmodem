@@ -60,6 +60,7 @@ sudo qmicli --nas-network-scan
 
 # Autostart and maintain connection with usb modem
 Create a script mobile_connect_usb.sh that connects and monitors the connection (available in repo)\
+Adjust for path, apn, ping adress for testing the connection (googles DNS 8.8.8.8 is useful)\
 cd /installation/modem/\
 nano mobile_connect_usb.sh\
 Add execution rights\

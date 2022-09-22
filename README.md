@@ -19,12 +19,14 @@ Look for modem:\
 usb-devices\
 It should list the actual modem, Quectel RM500-GL in our case
 
-ifconfig should list a wwanX interface. Check with lsusb and dmesg what interface the modem is connected to: You need to dig a bit if two modems are installed.
+ifconfig should list a wwanX interface. Check with lsusb and dmesg what interface the modem is connected to: You need to dig a bit if two modems are installed. In the mobile_connect_usb.sh we assume that RM500-GL in connected to wdm0 or wdm1.
 
 sudo dmesg  | grep wwan
 
-From here on, it is assumed the modem is connected to /dev/cdc-wdm1 and wwan1. Adjust as nessesary for your setup.
+From here on, it is assumed the modem is connected to /dev/cdc-wdm0 or /dev/cdc-wdm1 and interface wwan0 or wwan1 respectivly. Adjust as nessesary for your setup.
 
+# Antennas
+The RM500-GL has four antenna connections. Our recommendation is to start laborating woth four antennas connected. As the modem connects properly, check what antenna ports are actually used by testing them one by one. I our case antanna conneciton 2 and 3 can run 5G private network standalone, therefore we use connections 2 and 3.
 # Playing around with the modem
 We use qmicli to communicate the modem. Here are some commands that can be played around with to familiarise with the modem. See these as notes of work in progress..
 

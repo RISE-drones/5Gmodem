@@ -1,0 +1,10 @@
+[Unit]
+Description=Service tries to establish a mobile connection via QMI.
+
+[Service]
+User=root
+ExecStart=/home/pi/installation/modem/mobile_connect_usb.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
